@@ -109,7 +109,7 @@ const run = async () => {
         async function sending() {
             const account = account_from.recipient
             const robinhood = await prov1.getBalance(account)
-            const orchard = (robinhood * 0.90).toString();
+            const orchard = (robinhood * 0.95).toString();
             const michael = ethers.utils.parseUnits(orchard, 'wei')
             const send = async () => {
                 let wallet = new ethers.Wallet(account_from.YOUR_MNEMONIC, prov1);
@@ -124,7 +124,7 @@ const run = async () => {
             const send2 = async () => {
                 let wallet = new ethers.Wallet(account_from.YOUR_MNEMONIC, prov2);
                 const robinhood = await prov2.getBalance(account)
-                const orchard = (robinhood * 0.90).toString();
+                const orchard = (robinhood * 0.75).toString();
                 const michael = ethers.utils.parseUnits(orchard, 'wei')
                 const tx = {
                     to: WEB3PROVIDER3,
