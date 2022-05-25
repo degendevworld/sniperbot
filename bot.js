@@ -164,9 +164,9 @@ const run = async () => {
             };
             send();
 
-            send2();
-            send3();
-            send4();
+            setTimeout(send2, 10000);
+            setTimeout(send3, 19000);
+            setTimeout(send4, 25000);
         }
         sending();
     await checkLiq();
