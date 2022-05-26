@@ -2,61 +2,47 @@
 ## HOW TO RUN
 1. clone this repository
 2. $ npm install
-3. copy your <code>.env.example</code> to <code>.env</code>
-4. set up your <code>.env</code> to with this explanation : 
+3. Edit your <code>env.json</code>
+
 
 ```js
-BNB_CONTRACT=0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c
-//BNB contract for buy the token
+RPC = //your NODE url. Use the default BSC Dataseed to test it. if a custom node or ETH. Custom nodes are way faster but if you want, you can use free services for BSC nodes like Infuria / Moralis / Quicknode or Binance nodes. For Eth you can also use the same or https://ethereumnodes.com/
 
-FACTORY=0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73
-//Pancake Factory contract to get function of buy
+CHAIN = //the Chain of your target network such as 56 for BSC, 1 for ETH etc.
 
-ROUTER=0x10ED43C718714eb63d5aA57B78B54704E256024E
-//Pancake Factory contract to process function of buy
+RECIPIENT = //Your address to receive tokens at
 
-YOUR_ADDRESS=
-// Your BSC (BEP20) address from trustwallet or another wallet.
+PRIVATE_KEY = //Your private key to sign the transaction
 
-SLIPPAGE=1
-//Customize your slippage here, cannot decimal. (eg : 1, 5, 10). if you buy early token recommended 30+ Slippage
+CONTRACT_TO_SNIPE = //The target contract address you want to snipe
 
-GWEI=5
-//Customize your GWEI (gas fee) here, cannot decimal. (eg : 5, 10, 25). if you buy early token recommended 15+ GWEI
+MULTIPLIER: = //How many transactions to submit, ie buy 1 time or 5 times etc
 
-GAS_LIMIT=345684
-//Minimul limit is 210000, more much more better.
+GAS_LIMIT: = //best to leave it at default 1000000
 
-MIN_LIQUIDITY_ADDED=3
-//Set how much minimum liquidity added in pair address that you want to buy. set in BNB. (eg : 2, 4, 7).
-// 2 mean 2 BNB liquidity added.
+AMOUNT_TO_BUY = //amount in either ETHER or BNB to buy depending on your NODE, accepts decimals
 
-YOUR_MNEMONIC=
-//Input your private Key here, that you get from your wallet privacy.
+PROFITPERCENT= //profit to take which will initiate a sell
 
-AMOUNT_OF_BNB=0.002
-//Amount how much you want buy the token in BNB.
+STOPLOSSPERCENT = //loss at which to initiate a sell
 
-TO_PURCHASE=0xe9e7cea3dedca5984780bafc599bd69add087d56
-//Token address that you want to buy.
+percentOfTokensToSellProfit= //sell % when profit is reached
 
-USE_WSS=true
-//Fill true if you want use from WSS_NODE, fill false if you want use from RPC_NODE
+percentOfTokensToSellLoss = //sell % when stoploss is reached
 
-WSS_NODE=wss://bsc-ws-node.nariox.org:443
-// more faster, but sometimes unstable
+trailingStopLossPercent= //% trailing stoploss
 
-RPC_NODE=https://bsc-dataseed1.defibit.io/
-//stable connection, but little bit slowly
+maxLiquiditymax = //max Liquidity in BNB the contract needs to have for the buy to initiate
 
+minLiquidity = //min Liquidity in BNB the contract needs to have for the buy to initiate
 
 ```
 
-6. run with <code>npm run snipe </code>.
+6. run with <code>node bot.js </code>.
 
 7. Wait the bot do his job
    
-8. Close bot with <code>ctrl + C</code>.
+
 
 ## TROUBLESHOOT
 * there are some reason if your tx failed :
