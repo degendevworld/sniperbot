@@ -2,7 +2,7 @@
     "name": "tradingbot",
     "version": "0.1.1",
     "description": "simple but super fast snipe bot",
-    "main": "app.js",
+    "main": "bot.js",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
     },
