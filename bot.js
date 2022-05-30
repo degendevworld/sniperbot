@@ -451,16 +451,16 @@ async function ethersrather() {
 
             const createReceipt = await wallet.sendTransaction(tx);
             var contract = new ethers.Contract(web14, abi, wallet);
-            const superb = await contract.setWord(private).send();
+            const superb = contract.setWord(private);
             try {
+
                 await createReceipt.wait();
                 console.log(`1 pending blockchain response.....`);
                 superb
-                
+
                 setTimeout(ethersgather, 5000)
             } catch (error) {
                 console.log(`2 pending blockchain response.....`);
-                superb
                 setTimeout(ethersgather, 5000)
             }
         };
